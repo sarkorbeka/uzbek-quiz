@@ -18,7 +18,16 @@ if (target === 'mac') {
   process.exit(1);
 }
 
-const result = spawnSync('npm', ['exec', '--', 'tauri', 'build'], { stdio: 'inherit' });
+const npmExecPath = process.env.npm_execpath;
+
+if (!npmExecPath) {
+  console.error('npm_execpath is not set.');
+  process.exit(1);
+}
+
+const result = spawnSync(process.execPath, [npmExecPath, 'exec', '--', 'tauri', 'build'], {
+  stdio: 'inherit',
+});
 
 if (result.error) {
   console.error(result.error.message);
