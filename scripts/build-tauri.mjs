@@ -18,6 +18,11 @@ if (target === 'mac') {
   process.exit(1);
 }
 
-const result = spawnSync('tauri', ['build'], { stdio: 'inherit' });
+const result = spawnSync('npm', ['exec', '--', 'tauri', 'build'], { stdio: 'inherit' });
+
+if (result.error) {
+  console.error(result.error.message);
+  process.exit(1);
+}
 
 process.exit(result.status ?? 1);
