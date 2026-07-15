@@ -1,0 +1,17 @@
+{
+  "name": "uzbek-quiz-tauri",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Uzbek quiz as a smaller Tauri app",
+  "type": "module",
+  "scripts": {
+    "dev:server": "node ./scripts/dev-server.mjs",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build",
+    "tauri:build:mac": "node ./scripts/build-tauri.mjs mac",
+    "tauri:build:windows": "node ./scripts/build-tauri.mjs windows"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.6.3"
+  }
+}

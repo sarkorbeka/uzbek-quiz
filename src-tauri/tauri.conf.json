@@ -1,0 +1,28 @@
+{
+  "package": {
+    "productName": "Uzbek Quiz",
+    "version": "0.1.0"
+  },
+  "build": {
+    "beforeDevCommand": "npm run dev:server",
+    "beforeBuildCommand": "",
+    "devPath": "http://localhost:5173",
+    "distDir": "../src"
+  },
+  "tauri": {
+    "windows": [
+      {
+        "title": "Uzbek Quiz",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 900,
+        "minHeight": 650,
+        "resizable": true
+      }
+    ],
+    "bundle": {
+      "active": true,
+      "identifier": "uz.alif.uzbekquiztauri"
+    }
+  }
+}

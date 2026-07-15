@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Buxgalteriya hisobi bo'yicha test</title>
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="brand">📊 Buxgalteriya test</div>
+        <div class="subtitle" id="headerSubtitle">
+          Bilimingizni sinab ko'ring
+        </div>
+      </div>
+
+      <div class="timer" id="timer">
+        <span class="timer-label">⏱ Qolgan vaqt</span>
+        <strong id="timerValue">00:00</strong>
+      </div>
+    </header>
+
+    <main class="main-container">
+      <section id="startScreen" class="screen active">
+        <div class="welcome-card">
+          <div class="welcome-icon">📝</div>
+
+          <h1 id="quizTitle">Buxgalteriya hisobi bo'yicha test</h1>
+
+          <p id="quizDescription">
+            Testni boshlash uchun ma'lumotlaringizni kiriting.
+          </p>
+
+          <form id="startForm" class="start-form">
+            <label>
+              Ism va familiya
+              <input
+                id="fullName"
+                type="text"
+                placeholder="Masalan: Ali Valiyev"
+                autocomplete="name"
+                required
+              >
+            </label>
+
+            <label>
+              Bo'lim
+              <input
+                id="department"
+                type="text"
+                placeholder="Masalan: Buxgalteriya"
+              >
+            </label>
+
+            <div class="test-info">
+              <div>
+                <span>📋 Savollar soni</span>
+                <strong id="questionCount">0</strong>
+              </div>
+
+              <div>
+                <span>⏱ Ajratilgan vaqt</span>
+                <strong id="timeLimit">0 daqiqa</strong>
+              </div>
+
+              <div>
+                <span>🎯 O'tish bali</span>
+                <strong id="passingPercent">0%</strong>
+              </div>
+            </div>
+
+            <button class="primary-button" type="submit">
+              🚀 Testni boshlash
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section id="quizScreen" class="screen">
+        <div class="quiz-layout">
+          <aside class="question-sidebar">
+            <h2>📌 Savollar</h2>
+
+            <div
+              id="questionNavigation"
+              class="question-navigation"
+            ></div>
+
+            <div class="legend">
+              <div>
+                <span class="legend-dot current"></span>
+                Joriy savol
+              </div>
+
+              <div>
+                <span class="legend-dot answered"></span>
+                Javob berilgan
+              </div>
+
+              <div>
+                <span class="legend-dot empty"></span>
+                Javobsiz
+              </div>
+            </div>
+
+            <div class="score-info">
+              <div>
+                <span>🏆 Umumiy ball</span>
+                <strong id="totalPoints">0</strong>
+              </div>
+            </div>
+          </aside>
+
+          <section class="question-panel">
+            <div class="progress-header">
+              <div>
+                <span id="questionPosition">
+                  1-savol
+                </span>
+
+                <strong id="progressText">
+                  1 / 5
+                </strong>
+              </div>
+
+              <div class="progress-track">
+                <div
+                  id="progressBar"
+                  class="progress-bar"
+                ></div>
+              </div>
+            </div>
+
+            <article class="question-card">
+              <div
+                id="questionType"
+                class="question-type"
+              ></div>
+
+              <h2 id="questionText"></h2>
+
+              <div
+                id="answersContainer"
+                class="answers-container"
+              ></div>
+            </article>
+
+            <div class="navigation-buttons">
+              <button
+                id="previousButton"
+                class="secondary-button"
+                type="button"
+              >
+                ⬅ Oldingi
+              </button>
+
+              <button
+                id="nextButton"
+                class="primary-button"
+                type="button"
+              >
+                Keyingi ➡
+              </button>
+
+              <button
+                id="finishButton"
+                class="danger-button hidden"
+                type="button"
+              >
+                📤 Testni yakunlash
+              </button>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="resultScreen" class="screen">
+        <div class="result-card">
+          <div
+            id="resultIcon"
+            class="result-icon"
+          ></div>
+
+          <h1 id="resultTitle"></h1>
+
+          <p id="resultMessage"></p>
+
+          <div class="result-summary">
+            <div>
+              <span>📊 Natija</span>
+              <strong id="scorePercent">0%</strong>
+            </div>
+
+            <div>
+              <span>✅ To'g'ri javoblar</span>
+              <strong id="correctCount">0</strong>
+            </div>
+
+            <div>
+              <span>❌ Noto'g'ri javoblar</span>
+              <strong id="incorrectCount">0</strong>
+            </div>
+
+            <div>
+              <span>⏱ Sarflangan vaqt</span>
+              <strong id="elapsedTime">00:00</strong>
+            </div>
+          </div>
+
+          <div class="result-actions">
+            <button
+              id="reviewButton"
+              class="secondary-button"
+              type="button"
+            >
+              👁 Javoblarni ko'rish
+            </button>
+
+            <button
+              id="saveButton"
+              class="secondary-button"
+              type="button"
+            >
+              💾 Natijani saqlash
+            </button>
+
+            <button
+              id="printButton"
+              class="secondary-button"
+              type="button"
+            >
+              🖨 Chop etish
+            </button>
+
+            <button
+              id="restartButton"
+              class="primary-button"
+              type="button"
+            >
+              🔄 Qayta boshlash
+            </button>
+          </div>
+
+          <div
+            id="reviewContainer"
+            class="review-container hidden"
+          ></div>
+        </div>
+      </section>
+    </main>
+
+    <div
+      id="modal"
+      class="modal hidden"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="modal-card">
+        <h2 id="modalTitle">Tasdiqlash</h2>
+
+        <p id="modalMessage"></p>
+
+        <div class="modal-actions">
+          <button
+            id="modalCancel"
+            class="secondary-button"
+            type="button"
+          >
+            Bekor qilish
+          </button>
+
+          <button
+            id="modalConfirm"
+            class="danger-button"
+            type="button"
+          >
+            Tasdiqlash
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./questions.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
