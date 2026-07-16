@@ -1,0 +1,54 @@
+name: Build Portable Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-portable-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Add Windows target
+        run: rustup target add x86_64-pc-windows-msvc
+
+      - name: Build portable app
+        run: npm run tauri:build:portable
+
+      - name: Package portable app
+        shell: pwsh
+        run: |
+          $exe = Get-Item 'src-tauri/target/release/uzbek_quiz_tauri.exe'
+          if (-not (Test-Path $exe.FullName)) {
+            throw 'Portable exe not found.'
+          }
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          $zip = 'dist/uzbek-quiz-windows-portable.zip'
+          if (Test-Path $zip) { Remove-Item $zip }
+          Copy-Item $exe.FullName dist/
+          Compress-Archive -Path $exe.FullName -DestinationPath $zip
+
+      - name: Upload portable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: uzbek-quiz-windows-portable
+          path: |
+            dist/uzbek_quiz_tauri.exe
+            dist/uzbek-quiz-windows-portable.zip

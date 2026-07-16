@@ -9,7 +9,8 @@
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
     "tauri:build:mac": "node ./scripts/build-tauri.mjs mac",
-    "tauri:build:windows": "node ./scripts/build-tauri.mjs windows"
+    "tauri:build:windows": "node ./scripts/build-tauri.mjs windows",
+    "tauri:build:portable": "node ./scripts/build-tauri.mjs portable"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.6.3"
