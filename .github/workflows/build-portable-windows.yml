@@ -35,8 +35,8 @@ jobs:
       - name: Package portable app
         shell: pwsh
         run: |
-          $exe = Get-Item 'src-tauri/target/release/uzbek_quiz_tauri.exe'
-          if (-not (Test-Path $exe.FullName)) {
+          $exe = Get-ChildItem -Path src-tauri/target -Recurse -Filter 'uzbek_quiz_tauri.exe' | Select-Object -First 1
+          if (-not $exe) {
             throw 'Portable exe not found.'
           }
           New-Item -ItemType Directory -Force -Path dist | Out-Null
