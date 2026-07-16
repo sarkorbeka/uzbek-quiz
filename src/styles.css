@@ -520,6 +520,39 @@ select.text-answer option {
   box-shadow: 0 0 0 3px rgba(23, 123, 87, 0.12);
 }
 
+.blank-field {
+  display: grid;
+  gap: 8px;
+}
+
+.blank-field span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.fillblank-answer {
+  width: 100%;
+  min-height: auto;
+  height: 46px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fillblank-answer:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(23, 123, 87, 0.12);
+}
+
+.numeric-answer {
+  min-height: auto;
+  height: 52px;
+  resize: none;
+}
+
 .navigation-buttons {
   display: flex;
   justify-content: flex-end;

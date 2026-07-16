@@ -1,7 +1,15 @@
 import { spawnSync } from 'node:child_process';
+import { copyFileSync, existsSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
 import process from 'node:process';
 
 const target = process.argv[2];
+const variant = process.argv[3] || 'default';
+const rootDir = process.cwd();
+const questionsPath = path.join(rootDir, 'src', 'questions.js');
+const variantPath = path.join(rootDir, 'src', 'question-sets', `${variant}.js`);
+const backupPath = path.join(rootDir, 'src', '.questions.js.backup');
+let restoreQuestions = null;
 
 if (target === 'mac') {
   if (process.platform !== 'darwin') {
@@ -19,8 +27,24 @@ if (target === 'mac') {
     process.exit(1);
   }
 } else {
-  console.error('Usage: node ./scripts/build-tauri.mjs <mac|windows|portable>');
+  console.error('Usage: node ./scripts/build-tauri.mjs <mac|windows|portable> [variant]');
   process.exit(1);
+}
+
+if (target === 'portable' && variant !== 'default') {
+  if (!existsSync(variantPath)) {
+    console.error(`Question set not found: ${variantPath}`);
+    process.exit(1);
+  }
+
+  copyFileSync(questionsPath, backupPath);
+  writeFileSync(questionsPath, readFileSync(variantPath));
+  restoreQuestions = () => {
+    if (existsSync(backupPath)) {
+      copyFileSync(backupPath, questionsPath);
+      unlinkSync(backupPath);
+    }
+  };
 }
 
 const npmExecPath = process.env.npm_execpath;
@@ -38,7 +62,14 @@ const result = spawnSync(process.execPath, [npmExecPath, ...tauriArgs], {
 
 if (result.error) {
   console.error(result.error.message);
+  if (restoreQuestions) {
+    restoreQuestions();
+  }
   process.exit(1);
+}
+
+if (restoreQuestions) {
+  restoreQuestions();
 }
 
 process.exit(result.status ?? 1);

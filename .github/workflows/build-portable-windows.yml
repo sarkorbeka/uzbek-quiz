@@ -9,6 +9,15 @@ on:
 jobs:
   build-portable-windows:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        include:
+          - quiz_set: default
+            artifact_name: uzbek-quiz-windows-portable
+            base_name: uzbek-quiz-windows-portable
+          - quiz_set: accounting-practice
+            artifact_name: uzbek-quiz-windows-portable-accounting-practice
+            base_name: uzbek-quiz-windows-portable-accounting-practice
 
     steps:
       - name: Checkout
@@ -30,7 +39,7 @@ jobs:
         run: rustup target add x86_64-pc-windows-msvc
 
       - name: Build portable app
-        run: npm run tauri:build:portable
+        run: npm run tauri:build:portable -- ${{ matrix.quiz_set }}
 
       - name: Package portable app
         shell: pwsh
@@ -40,15 +49,17 @@ jobs:
             throw 'Portable exe not found.'
           }
           New-Item -ItemType Directory -Force -Path dist | Out-Null
-          $zip = 'dist/uzbek-quiz-windows-portable.zip'
+          $baseName = '${{ matrix.base_name }}'
+          $exeName = "$baseName.exe"
+          $zip = "dist/$baseName.zip"
           if (Test-Path $zip) { Remove-Item $zip }
-          Copy-Item $exe.FullName dist/
-          Compress-Archive -Path $exe.FullName -DestinationPath $zip
+          Copy-Item $exe.FullName "dist/$exeName"
+          Compress-Archive -Path "dist/$exeName" -DestinationPath $zip
 
       - name: Upload portable artifact
         uses: actions/upload-artifact@v4
         with:
-          name: uzbek-quiz-windows-portable
+          name: ${{ matrix.artifact_name }}
           path: |
-            dist/uzbek_quiz_tauri.exe
-            dist/uzbek-quiz-windows-portable.zip
+            dist/${{ matrix.base_name }}.exe
+            dist/${{ matrix.base_name }}.zip
