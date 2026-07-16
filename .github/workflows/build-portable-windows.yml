@@ -12,10 +12,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - quiz_set: default
+          - quiz_set: test-1
             artifact_name: test-1
             base_name: test-1
-          - quiz_set: accounting-practice
+          - quiz_set: test-2
             artifact_name: test-2
             base_name: test-2
 

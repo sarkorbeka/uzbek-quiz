@@ -4,10 +4,11 @@ import path from 'node:path';
 import process from 'node:process';
 
 const target = process.argv[2];
-const variant = process.argv[3] || 'default';
+const variant = process.argv[3] || 'test-1';
 const rootDir = process.cwd();
 const questionsPath = path.join(rootDir, 'src', 'questions.js');
-const variantPath = path.join(rootDir, 'src', 'question-sets', `${variant}.js`);
+const variantName = variant === 'default' ? 'test-1' : variant;
+const variantPath = path.join(rootDir, 'src', 'question-sets', `${variantName}.js`);
 const backupPath = path.join(rootDir, 'src', '.questions.js.backup');
 let restoreQuestions = null;
 
@@ -31,7 +32,7 @@ if (target === 'mac') {
   process.exit(1);
 }
 
-if (target === 'portable' && variant !== 'default') {
+if (target === 'portable') {
   if (!existsSync(variantPath)) {
     console.error(`Question set not found: ${variantPath}`);
     process.exit(1);
