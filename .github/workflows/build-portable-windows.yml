@@ -13,11 +13,11 @@ jobs:
       matrix:
         include:
           - quiz_set: default
-            artifact_name: uzbek-quiz-windows-portable
-            base_name: uzbek-quiz-windows-portable
+            artifact_name: test-1
+            base_name: test-1
           - quiz_set: accounting-practice
-            artifact_name: uzbek-quiz-windows-portable-accounting-practice
-            base_name: uzbek-quiz-windows-portable-accounting-practice
+            artifact_name: test-2
+            base_name: test-2
 
     steps:
       - name: Checkout

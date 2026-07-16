@@ -1,5 +1,5 @@
 window.QUIZ_CONFIG = {
-  title: "Buxgalteriya hisobi bo'yicha test",
+  title: "Test 2 - Buxgalteriya hisobi",
   description: "Savollarga javob bering va yakunda natijangizni tekshiring.",
   timeLimitMinutes: 180,
   passingPercent: 80,
