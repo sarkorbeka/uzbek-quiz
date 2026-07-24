@@ -135,6 +135,7 @@ window.QUIZ_QUESTIONS = [
     type: "text",
     question: "Korxona yuk tashish uchun yuk avtomobilini sotib oldi, dastlabki qiymati 4000. Xizmat muddati 5 yil. Avtomobil 5 yil davomida qila oladigan taxminiy umumiy yurishi 40 km ni tashkil qiladi. Birinchi yilda haqiqiy yurish -10 km, 2-yilda - 8 km, 3-yilda - 9 km, 4-yilda - 7 km, 5-yilda - 7 km. Hisob siyosatiga ko'ra, avtomobilga amortizatsiya ishlab chiqarish usuli bilan hisoblanadi. Barcha hisob-kitoblarni Excelda yaxlitlanmasdan bajaring. Natijani butun sonlarda kiriting. Har bir yil uchun yillik ajratmalar summasini hisoblang.",
     correctText: ["1000", "800", "900", "700", "600"],
+    inputLabels: ["1-yil", "2-yil", "3-yil", "4-yil", "5-yil"],
     explanation: "1-yil = 4000/40*10 = 1000, 2-yil = 4000/40*8 = 800, 3-yil = 4000/40*9 = 900, 4-yil = 4000/40*7 = 700, 5-yil = 4000/40*7 = 600.",
     points: 8
   },
@@ -143,6 +144,7 @@ window.QUIZ_QUESTIONS = [
     type: "text",
     question: "Ma'muriyat xodimiga 2022 yil yanvar oyi uchun hisoblandi: ish haqi -1 950 000 so'm, ovqat va yo'l haqi uchun qo'shimcha to'lov - 200 000 so'm, bola tug'ilishi munosabati bilan moddiy yordam 3 500 000. Xodimdan har oy korxona tomonidan Toshkent shahridagi OTMda o'g'lining o'qishi uchun berilgan qarzni to'lash uchun 300 000 ushlab turiladi. EHM = 822 000 so'm. Barcha hisob-kitoblarni Excelda yaxlitlanmasdan bajaring. Natijani butun sonlarda kiriting. Yanvar oyi uchun hisoblang: hisoblangan daromad summasi, JShDSga tortiladigan daromad, hisoblangan JShDS summasi, xodimning INPSga ajratmalar summasi, byudjetga to'lanishi kerak bo'lgan JShDS summasi, ijtimoiy soliq summasi (12%), to'lanishi kerak bo'lgan summa.",
     correctText: ["5650000", "1881160", "225739", "2257", "223482", "258000", "5124261"],
+    inputLabels: ["Hisoblangan daromad", "JShDSga tortiladigan daromad", "Hisoblangan JShDS", "INPSga ajratmalar", "Byudjetga JShDS", "Ijtimoiy soliq", "To'lanishi kerak"],
     explanation: "Daromad = 1950000+200000+3500000 = 5650000. JShDS = 225739 va h.k.",
     points: 10
   },
@@ -151,6 +153,7 @@ window.QUIZ_QUESTIONS = [
     type: "text",
     question: "2022 yil 01.01 holatiga ko'ra korxona balansida stanok mavjud, stanokning tiklash qiymati 7 000, hisoblangan eskirish 1 400 ni tashkil etdi, uzoq muddatli aktivlarni qayta baholash bo'yicha tuzatish 754,2 ni tashkil etdi. 2021 yil uchun stanokni qayta baholashni o'tkazing. Qayta baholash indeksi - 1,131. Barcha hisob-kitoblarni Excelda yaxlitlanmasdan bajaring. Natijani o'nli kasrdan keyin 1 belgigacha yaxlitlang. Aniqlang: stanok qiymatini oshirib baholash summasi, eskirishni oshirib baholash summasi, qayta baholashdan keyingi stanokning qoldiq qiymati, 2022 yil 01.01 holatiga qayta baholash bo'yicha tuzatish summasi.",
     correctText: ["917.0", "183.4", "6333.6", "1487.8"],
+    inputLabels: ["Qiymatni oshirib baholash", "Eskirishni oshirib baholash", "Qoldiq qiymat", "Qayta baholash tuzatishi"],
     explanation: "Qayta baholash indeksi 1,131 bo'yicha hisob-kitoblar.",
     points: 6
   },
@@ -159,6 +162,7 @@ window.QUIZ_QUESTIONS = [
     type: "text",
     question: "Xodim (ish staji - 10 yil) 2022 yil 8 yanvardan 12 yanvargacha (5 ish kuni) vaqtincha mehnatga qobiliyatsizlik varaqasini taqdim etdi. Uning yanvar oyidagi lavozim maoshi 1 700 000. Oldingi 12 oy (2021 yil yanvar-dekabr) davomida u quyidagi qo'shimcha to'lovlarni oldi: ishlab chiqarish mukofotlari - 1 200 000, professionallik uchun qo'shimcha to'lovlar - 600 000, qishloq xo'jaligi mahsulotlari uchun moddiy yordam - 800 000. Korxonada besh kunlik ish haftasi. 2022 yil yanvar oyida 21 ish kuni bor edi. Barcha hisob-kitoblarni Excelda yaxlitlanmasdan bajaring. Natijani butun sonlarda kiriting. Hisoblang: vaqtincha mehnatga qobiliyatsizlik nafaqasini hisoblash uchun qabul qilinadigan o'rtacha oylik ish haqi summasi, o'rtacha kunlik ish haqi summasi, umumiy ish stajiga bog'liq bo'lgan nafaqa foizi, vaqtincha mehnatga qobiliyatsizlik nafaqasi summasi.",
     correctText: ["1850000", "88095", "80", "352381"],
+    inputLabels: ["O'rtacha oylik", "O'rtacha kunlik", "Nafaqa foizi", "Nafaqa summasi"],
     explanation: "O'rtacha oylik = (1700000*12 + 1200000 + 600000) / 12 = 1850000. O'rtacha kunlik = 1850000 / 21 = 88095. Staj 10 yil = 80%. Nafaqa = 88095 * 5 * 0.8 = 352381.",
     points: 6
   },
@@ -167,6 +171,7 @@ window.QUIZ_QUESTIONS = [
     type: "text",
     question: "Xodimga 2022 yil 5 yanvardan boshlab 2021 yil yanvar-dekabr davri uchun 24 ish kuniga navbatdagi mehnat ta'tili berildi. Uning yanvar oyidagi lavozim maoshi 1 900 000. Oldingi 12 oy (2021 yil yanvar-dekabr) davomida u quyidagi qo'shimcha to'lovlarni oldi: ishlab chiqarish mukofotlari - 2 400 000, professionallik uchun qo'shimcha to'lovlar - 400 000, bola tug'ilishi munosabati bilan moddiy yordam -2 100 000, yo'l haqi va ovqatlanish uchun kompensatsiya to'lovlari -1800000. Korxonada besh kunlik ish haftasi. Barcha hisob-kitoblarni Excelda yaxlitlanmasdan bajaring. Natijani butun sonlarda kiriting. Hisoblang: mehnat ta'tilini hisoblash uchun qabul qilinadigan o'rtacha oylik ish haqi summasi, ta'til to'lovi summasi.",
     correctText: ["2283333", "2157480"],
+    inputLabels: ["O'rtacha oylik", "Ta'til to'lovi"],
     explanation: "O'rtacha oylik = (1900000*12 + 2400000 + 400000) / 12 = 2283333. Ta'til to'lovi = 2283333 / 25.4 * 24 = 2157480.",
     points: 4
   },
@@ -255,6 +260,7 @@ window.QUIZ_QUESTIONS = [
     type: "text",
     question: "Korxona ishlab chiqarish uskunasini sotib oldi, dastlabki qiymati 5000. Xizmat muddati 5 yil. Hisob siyosatiga ko'ra, ushbu uskunaga amortizatsiya ikki marta kamayuvchi qoldiq usuli bo'yicha hisoblanadi. Barcha hisob-kitoblarni Excelda yaxlitlanmasdan bajaring. Natijani butun sonlarda kiriting. Har bir yil uchun yillik ajratmalar summasini hisoblang.",
     correctText: ["2000", "1200", "720", "432", "648"],
+    inputLabels: ["1-yil", "2-yil", "3-yil", "4-yil", "5-yil"],
     explanation: "1-yil = 5000*40% = 2000, 2-yil = (5000-2000)*40% = 1200, 3-yil = (3000-1200)*40% = 720, 4-yil = (1800-720)*40% = 432, 5-yil = 1080-432 = 648.",
     points: 6
   },

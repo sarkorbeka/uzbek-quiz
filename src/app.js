@@ -313,18 +313,48 @@
   }
 
   function renderTextQuestion(question) {
-    const textarea = document.createElement("textarea");
+    const labels = question.inputLabels;
 
-    textarea.className = "text-answer";
-    textarea.placeholder = "Javobingizni kiriting...";
-    textarea.value = state.answers[question.id]?.[0] || "";
+    if (labels && labels.length > 0) {
+      const stored = state.answers[question.id] || [];
 
-    textarea.addEventListener("input", () => {
-      state.answers[question.id] = [textarea.value];
-      updateQuestionNavigation();
-    });
+      labels.forEach((labelText, index) => {
+        const wrapper = document.createElement("label");
+        wrapper.className = "multi-text-field";
 
-    elements.answersContainer.appendChild(textarea);
+        const title = document.createElement("span");
+        title.textContent = labelText;
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.className = "fillblank-answer";
+        input.placeholder = "Javobni kiriting...";
+        input.value = stored[index] || "";
+
+        input.addEventListener("input", () => {
+          const current = state.answers[question.id] || [];
+          current[index] = input.value;
+          state.answers[question.id] = [...current];
+          updateQuestionNavigation();
+        });
+
+        wrapper.append(title, input);
+        elements.answersContainer.appendChild(wrapper);
+      });
+    } else {
+      const textarea = document.createElement("textarea");
+
+      textarea.className = "text-answer";
+      textarea.placeholder = "Javobingizni kiriting...";
+      textarea.value = state.answers[question.id]?.[0] || "";
+
+      textarea.addEventListener("input", () => {
+        state.answers[question.id] = [textarea.value];
+        updateQuestionNavigation();
+      });
+
+      elements.answersContainer.appendChild(textarea);
+    }
   }
 
   function renderNumericQuestion(question) {
@@ -508,6 +538,11 @@
     }
 
     if (question.type === "text") {
+      if (question.inputLabels && question.inputLabels.length > 0) {
+        return question.inputLabels.every(
+          (_label, index) => String(answer[index] || "").trim().length > 0
+        );
+      }
       return String(answer[0] || "").trim().length > 0;
     }
 
@@ -687,6 +722,12 @@
 
   function isCorrect(question, userAnswer) {
     if (question.type === "text") {
+      if (question.inputLabels && question.inputLabels.length > 0) {
+        return question.correctText.every((correct, index) => {
+          const normalized = normalizeText(userAnswer[index] || "");
+          return normalizeText(correct) === normalized;
+        });
+      }
       const normalized = normalizeText(userAnswer[0] || "");
       return question.correctText.some(
         (answer) => normalizeText(answer) === normalized
@@ -904,6 +945,14 @@
     }
 
     if (question.type === "text") {
+      if (question.inputLabels && question.inputLabels.length > 0) {
+        return question.inputLabels
+          .map((label, index) => {
+            const value = String(answer[index] || "").trim() || "Javob berilmagan";
+            return `${label}: ${value}`;
+          })
+          .join("; ");
+      }
       return String(answer[0] || "").trim() ||
         "Javob berilmagan";
     }
@@ -954,6 +1003,11 @@
 
   function formatCorrectAnswer(question) {
     if (question.type === "text") {
+      if (question.inputLabels && question.inputLabels.length > 0) {
+        return question.inputLabels
+          .map((label, index) => `${label}: ${question.correctText[index]}`)
+          .join("; ");
+      }
       return question.correctText[0];
     }
 

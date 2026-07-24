@@ -530,6 +530,16 @@ select.text-answer option {
   font-weight: 700;
 }
 
+.multi-text-field {
+  display: grid;
+  gap: 8px;
+}
+
+.multi-text-field span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .fillblank-answer {
   width: 100%;
   min-height: auto;
